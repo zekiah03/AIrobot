@@ -27,8 +27,8 @@ export default function QuizPage() {
     if (selected === null) return
     const next = { ...answers, [q.id]: { category: q.category, value: selected } }
     setAnswers(next)
-    setSelected(null)
     if (current + 1 < questions.length) {
+      setSelected(next[questions[current + 1].id]?.value ?? null)
       setCurrent(current + 1)
     } else {
       navigate('/loading', { state: { answers: next } })
@@ -37,8 +37,9 @@ export default function QuizPage() {
 
   function handlePrev() {
     if (current === 0) return
+    const prevId = questions[current - 1].id
+    setSelected(answers[prevId]?.value ?? null)
     setCurrent(current - 1)
-    setSelected(answers[questions[current - 1].id]?.value ?? null)
   }
 
   return (
