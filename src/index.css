@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background-color: #050a0f;
+    color: #c8f0e0;
+    font-family: 'JetBrains Mono', 'Noto Sans JP', monospace;
+  }
+}
+
+@layer utilities {
+  .text-cyan-glow {
+    text-shadow: 0 0 8px #00ffe7, 0 0 20px #00ffe799;
+  }
+  .border-glow {
+    box-shadow: 0 0 8px #00ffe744, inset 0 0 8px #00ffe711;
+  }
+  .scan-line {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 200, 0.03) 2px,
+      rgba(0, 255, 200, 0.03) 4px
+    );
+  }
+}
