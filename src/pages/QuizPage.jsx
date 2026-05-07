@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { questions } from '../data/questions'
+import { questions, categoryMeta } from '../data/questions'
 
 const CHOICES = [
   { value: 1, label: '全くそう思わない' },
@@ -59,15 +59,24 @@ export default function QuizPage() {
       </div>
 
       {/* カテゴリバッジ */}
-      <div className="w-full max-w-2xl mb-4">
+      <div className="w-full max-w-2xl mb-3 flex items-center gap-3">
         <span className="text-xs border border-cyan-700 text-cyan-500 px-3 py-1 tracking-widest">
           [{q.category}]
+        </span>
+        <span className="text-xs text-cyan-600">
+          {categoryMeta[q.category]?.label}
+        </span>
+        <span className="text-xs text-cyan-800">
+          — {categoryMeta[q.category]?.part}
         </span>
       </div>
 
       {/* 質問文 */}
-      <div className="w-full max-w-2xl mb-10">
-        <p className="text-lg md:text-xl text-cyan-100 leading-relaxed">{q.text}</p>
+      <div className="w-full max-w-2xl mb-8">
+        <p className="text-lg md:text-xl text-cyan-100 leading-relaxed mb-3">{q.text}</p>
+        <p className="text-[11px] text-cyan-700 leading-relaxed border-l-2 border-cyan-900 pl-3">
+          {categoryMeta[q.category]?.comments?.mid?.slice(0, 60)}…
+        </p>
       </div>
 
       {/* 選択肢 */}
