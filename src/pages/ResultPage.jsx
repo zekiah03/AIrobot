@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import RobotDiagram from '../components/RobotDiagram'
+import { contributeToTwin } from '../utils/contribute'
 
 function CountUp({ target, duration = 1200 }) {
   const [val, setVal] = useState(0)
@@ -25,6 +26,11 @@ export default function ResultPage() {
   useEffect(() => {
     if (!state?.result) { navigate('/'); return }
     setTimeout(() => setVisible(true), 100)
+    contributeToTwin('airobot', {
+      grade: state.result.grade,
+      totalScore: state.result.totalScore,
+      title: state.result.title,
+    })
   }, [])
 
   if (!state?.result) return null
